@@ -3,7 +3,7 @@ using Ocelot.Configuration;
 using Ocelot.Configuration.Repository;
 using Ocelot.Middleware;
 
-namespace Ocelot.Provider.Eureka;
+namespace Ocelot.Discovery.Eureka;
 
 public class EurekaMiddlewareConfigurationProvider
 {

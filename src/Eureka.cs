@@ -1,7 +1,7 @@
 ﻿using Ocelot.ServiceDiscovery.Providers;
 using Ocelot.Values;
 
-namespace Ocelot.Provider.Eureka;
+namespace Ocelot.Discovery.Eureka;
 
 public class Eureka : IServiceDiscoveryProvider
 {

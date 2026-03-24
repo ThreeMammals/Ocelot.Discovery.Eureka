@@ -2,7 +2,7 @@
 using Ocelot.DependencyInjection;
 using Steeltoe.Discovery.Client;
 
-namespace Ocelot.Provider.Eureka;
+namespace Ocelot.Discovery.Eureka;
 
 public static class OcelotBuilderExtensions
 {

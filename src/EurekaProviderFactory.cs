@@ -2,14 +2,14 @@
 using Ocelot.Configuration;
 using Ocelot.ServiceDiscovery.Providers;
 
-namespace Ocelot.Provider.Eureka;
+namespace Ocelot.Discovery.Eureka;
 
 public static class EurekaProviderFactory
 {
     /// <summary>
     /// String constant used for provider type definition.
     /// </summary>
-    public const string Eureka = nameof(Provider.Eureka.Eureka);
+    public const string Eureka = nameof(Discovery.Eureka.Eureka);
 
     public static ServiceDiscoveryFinderDelegate Get { get; } = CreateProvider;
 
