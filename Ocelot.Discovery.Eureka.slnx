@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="acceptance/Ocelot.Discovery.Eureka.Acceptance.csproj" />
   <Project Path="src/Ocelot.Discovery.Eureka.csproj" />
 </Solution>
