@@ -4,14 +4,14 @@ using Ocelot.Configuration;
 using Ocelot.Configuration.Builder;
 using Ocelot.Configuration.Repository;
 using Ocelot.Responses;
-using Steeltoe.Discovery;
+using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka.UnitTests;
 
-public class EurekaMiddlewareConfigurationProviderTests
+public class EurekaMiddlewareConfigurationTests
 {
     [Fact]
-    public void ShouldNotBuild()
+    public async Task ShouldNotBuild()
     {
         // Arrange
         var configRepo = new Mock<IInternalConfigurationRepository>();
@@ -22,10 +22,12 @@ public class EurekaMiddlewareConfigurationProviderTests
         var sp = services.BuildServiceProvider(true);
 
         // Act
-        var provider = EurekaMiddlewareConfigurationProvider.Get(new ApplicationBuilder(sp));
+        var actual = await Assert.ThrowsAsync<NotSupportedException>(
+            () => EurekaMiddlewareConfiguration.Get(new ApplicationBuilder(sp)));
 
         // Assert
-        Assert.Equal(TaskStatus.RanToCompletion, provider.Status);
+        Assert.Equal("Failed to create the final configuration in UseOcelot() due to a provider type mismatch. You have added Eureka provider services via AddEureka(), but the actual service discovery provider type is unknown. Please review the ServiceDiscoveryProvider section in your global configuration.",
+            actual.Message);
     }
 
     [Fact]
@@ -44,7 +46,7 @@ public class EurekaMiddlewareConfigurationProviderTests
         var sp = services.BuildServiceProvider(true);
 
         // Act
-        var provider = EurekaMiddlewareConfigurationProvider.Get(new ApplicationBuilder(sp));
+        var provider = EurekaMiddlewareConfiguration.Get(new ApplicationBuilder(sp));
 
         // Assert
         Assert.Equal(TaskStatus.RanToCompletion, provider.Status);

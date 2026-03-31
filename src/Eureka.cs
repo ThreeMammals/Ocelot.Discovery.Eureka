@@ -1,5 +1,6 @@
 ﻿using Ocelot.ServiceDiscovery.Providers;
 using Ocelot.Values;
+using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka;
 
@@ -14,16 +15,20 @@ public class Eureka : IServiceDiscoveryProvider
         _client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
-    public Task<List<Service>> GetAsync()
+    public async Task<List<Service>> GetAsync()
     {
-        var services = new List<Service>();
+        var instances = await _client.GetInstancesAsync(_serviceName, default); // TODO Need CancellationToken
+        if (instances is null || instances.Count == 0)
+            return [];
 
-        var instances = _client.GetInstances(_serviceName);
-        if (instances != null && instances.Any())
-        {
-            services.AddRange(instances.Select(i => new Service(i.ServiceId, new ServiceHostAndPort(i.Host, i.Port, i.Uri.Scheme), string.Empty, string.Empty, new List<string>())));
-        }
-
-        return Task.FromResult(services);
+        var services = instances
+            .Select(i => new Service(
+                name: i.ServiceId,
+                hostAndPort: new(i.Host, i.Port, i.Uri.Scheme),
+                id: i.InstanceId,
+                version: i.Metadata.GetValueOrDefault("version") ?? i.InstanceId,
+                tags: i.Metadata.Select(m => $"{m.Key}:{m.Value}")))
+            .ToList();
+        return services;
     }
 }

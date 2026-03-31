@@ -20,11 +20,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         _eurekaInstances = [];
     }
 
-#if NET10_0_OR_GREATER
-    [BddfyTheory(Skip = "TODO Requires upgrade to v4.0 after package upgraded")]
-#else
     [BddfyTheory]
-#endif
     [Trait("Feat", "262")] // https://github.com/ThreeMammals/Ocelot/issues/262
     [Trait("PR", "324")] // https://github.com/ThreeMammals/Ocelot/pull/324
     [InlineData(true)]
@@ -70,7 +66,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
 
     private Task MapEurekaService(HttpContext context)
     {
-        if (context.Request.Path.Value != "/eureka/apps/")
+        if (context.Request.Path.Value != "/eureka/apps")
             return Task.CompletedTask;
 
         var apps = new List<Application>();

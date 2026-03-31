@@ -32,8 +32,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Ocelot" Version="25.0.0-beta.2" />
-    <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="3.3.0" /><!-- TODO Requires upgrade to v4.0 after package upgraded -->
-    <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.3.0" /><!-- TODO Requires upgrade to v4.0 after package upgraded -->
+    <PackageReference Include="Steeltoe.Discovery.Configuration" Version="4.1.0" />
+    <PackageReference Include="Steeltoe.Discovery.Eureka" Version="4.1.0" />
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.201" />
   </ItemGroup>
 </Project>

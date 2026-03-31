@@ -12,7 +12,7 @@ public class FakeEurekaService : IServiceInstance
         Port = port;
         IsSecure = isSecure;
         Uri = uri;
-        Metadata = metadata;
+        Metadata = metadata.AsReadOnly();
     }
 
     public string ServiceId { get; }
@@ -20,7 +20,11 @@ public class FakeEurekaService : IServiceInstance
     public int Port { get; }
     public bool IsSecure { get; }
     public Uri Uri { get; }
-    public IDictionary<string, string> Metadata { get; }
+    public IReadOnlyDictionary<string, string> Metadata { get; }
+
+    public string InstanceId => ServiceId;
+    public Uri NonSecureUri => Uri;
+    public Uri SecureUri => Uri;
 }
 
 #pragma warning disable IDE1006 // Naming Styles

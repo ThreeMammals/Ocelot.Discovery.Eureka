@@ -5,8 +5,7 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.ServiceDiscovery;
 using Ocelot.Testing;
-using Steeltoe.Common.Discovery;
-using Steeltoe.Common.Http.Discovery;
+using Steeltoe.Discovery.Eureka;
 using System.Reflection;
 
 namespace Ocelot.Discovery.Eureka.UnitTests;
@@ -55,11 +54,11 @@ public sealed class OcelotBuilderExtensionsTests : Unit
         // Arrange, Act
         _ocelotBuilder = _services.AddOcelot(_configRoot).AddEureka();
 
-        // Assert: AddDiscoveryClient
-        var descriptor = _services.SingleOrDefault(Of<DiscoveryHttpMessageHandler>);
+        // Assert: AddEurekaDiscoveryClient
+        var descriptor = _services.SingleOrDefault(Of<EurekaDiscoveryClient>);
         Assert.NotNull(descriptor);
-        Assert.Equal(ServiceLifetime.Transient, descriptor.Lifetime);
-        descriptor = _services.SingleOrDefault(Of<IServiceInstanceProvider>);
+        Assert.Equal(ServiceLifetime.Singleton, descriptor.Lifetime);
+        descriptor = _services.SingleOrDefault(Of<IHealthCheckHandler>); // is EurekaHealthCheckHandler
         Assert.NotNull(descriptor);
         Assert.Equal(ServiceLifetime.Singleton, descriptor.Lifetime);
 

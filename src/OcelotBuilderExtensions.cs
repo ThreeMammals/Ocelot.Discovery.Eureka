@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
-using Steeltoe.Discovery.Client;
 
 namespace Ocelot.Discovery.Eureka;
 
@@ -9,9 +8,9 @@ public static class OcelotBuilderExtensions
     public static IOcelotBuilder AddEureka(this IOcelotBuilder builder)
     {
         builder.Services
-            .AddDiscoveryClient(builder.Configuration)
+            .AddEurekaDiscoveryClient()
             .AddSingleton(EurekaProviderFactory.Get)
-            .AddSingleton(EurekaMiddlewareConfigurationProvider.Get);
+            .AddSingleton(EurekaMiddlewareConfiguration.Get);
         return builder;
     }
 }

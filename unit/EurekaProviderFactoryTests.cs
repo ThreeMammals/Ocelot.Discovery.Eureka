@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Ocelot.Configuration.Builder;
-using Steeltoe.Discovery;
+using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka.UnitTests;
 
@@ -13,8 +13,12 @@ public class EurekaProviderFactoryTests
         var config = new ServiceProviderConfigurationBuilder().Build();
         var sp = new ServiceCollection().BuildServiceProvider(true);
 
-        // Act, Assert
-        Assert.Throws<NullReferenceException>(() => EurekaProviderFactory.Get(sp, config, null));
+        // Act
+        var actual = Assert.Throws<NotSupportedException>(
+            () => EurekaProviderFactory.Get(sp, config, null));
+
+        // Assert
+        Assert.Equal("Cannot get an IDiscoveryClient service during CreateProvider operation to instanciate the Eureka provider!", actual.Message);
     }
 
     [Fact]
