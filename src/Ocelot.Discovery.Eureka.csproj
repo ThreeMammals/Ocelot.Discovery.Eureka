@@ -8,7 +8,7 @@
     <Version>25.0.0-beta.2</Version>
     <PackageId>Ocelot.Discovery.Eureka</PackageId>
     <PackageTags>ocelot;discovery;service-discovery;netflix;eureka</PackageTags>
-    <PackageProjectUrl>https://github.com/ThreeMammals/Ocelot/tree/main/src/Ocelot.Provider.Eureka</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ThreeMammals/Ocelot.Discovery.Eureka</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/ThreeMammals/Ocelot/assets/images/ocelot_icon_128x128.png</PackageIconUrl>
     <RuntimeIdentifiers>win-x64;osx-x64</RuntimeIdentifiers>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -22,7 +22,7 @@
     <Product>Ocelot Gateway</Product>
     <Copyright>© 2026 Three Mammals. MIT licensed OSS</Copyright>
     <PackageIcon>ocelot_icon.png</PackageIcon>
-    <RepositoryUrl>https://github.com/ThreeMammals/Ocelot.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/ThreeMammals/Ocelot.Discovery.Eureka.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>

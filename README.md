@@ -1,6 +1,6 @@
-![Ocelot Icon](/ocelot_icon.png "Ocelot Icon")
-![Steeltoe Logo](/steeltoe_logo.svg "Steeltoe Logo")
-![Eureka Logo](/eureka_logo.png "Eureka Logo")
+[![Ocelot Logo](/ocelot_icon.png)](https://github.com/ThreeMammals/Ocelot/ "Go to Ocelot repository")
+[![Steeltoe Logo](/steeltoe_logo.svg)](https://steeltoe.io/ "Go to Steeltoe OSS portal")
+[![Eureka Logo](/eureka_logo.png)](https://github.com/Netflix/eureka/ "Go to Netflix Eureka repository")
 # Ocelot.Discovery.Eureka
 
 [Ocelot](https://github.com/ThreeMammals/Ocelot) [Service Discovery](https://ocelot.readthedocs.io/en/latest/features/servicediscovery.html) feature, powered by [Steeltoe OSS](https://steeltoe.io/) [Service Discovery](https://steeltoe.io/docs/v4/discovery/index.html) integration for [Netflix Eureka](https://steeltoe.io/docs/v4/discovery/netflix-eureka.html) discovery client.
