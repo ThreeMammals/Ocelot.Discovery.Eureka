@@ -246,7 +246,7 @@ jobs:
         run: dotnet restore ./Ocelot.Discovery.Eureka.slnx
 
       - name: Pack project
-        run: dotnet pack ./src/Ocelot.Discovery.Eureka.csproj --configuration Release --output ./packages /p:ContinuousIntegrationBuild=true
+        run: dotnet pack ./src/Ocelot.Discovery.Eureka.csproj --no-restore --configuration Release --output ./packages /p:ContinuousIntegrationBuild=true
 
       - name: Publish to GitHub Packages
         run: dotnet nuget push ./packages/*.nupkg --source "https://nuget.pkg.github.com/ThreeMammals/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
