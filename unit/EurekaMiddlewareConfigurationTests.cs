@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Ocelot.Configuration;
-using Ocelot.Configuration.Builder;
-using Ocelot.Configuration.Repository;
-using Ocelot.Responses;
+using Ocelot.Configuration.File;
 using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka.UnitTests;
@@ -14,16 +11,13 @@ public class EurekaMiddlewareConfigurationTests
     public async Task ShouldNotBuild()
     {
         // Arrange
-        var configRepo = new Mock<IInternalConfigurationRepository>();
-        configRepo.Setup(x => x.Get())
-            .Returns(new OkResponse<IInternalConfiguration>(new InternalConfiguration()));
         var services = new ServiceCollection();
-        services.AddSingleton(configRepo.Object);
         var sp = services.BuildServiceProvider(true);
+        var app = new ApplicationBuilder(sp);
 
         // Act
         var actual = await Assert.ThrowsAsync<NotSupportedException>(
-            () => EurekaMiddlewareConfiguration.Get(new ApplicationBuilder(sp)));
+            () => EurekaMiddlewareConfiguration.Get.Invoke(app));
 
         // Assert
         Assert.Equal("Failed to create the final configuration in UseOcelot() due to a provider type mismatch. You have added Eureka provider services via AddEureka(), but the actual service discovery provider type is unknown. Please review the ServiceDiscoveryProvider section in your global configuration.",
@@ -34,19 +28,15 @@ public class EurekaMiddlewareConfigurationTests
     public void ShouldBuild()
     {
         // Arrange
-        var serviceProviderConfig = new ServiceProviderConfigurationBuilder()
-            .WithType(nameof(Eureka)).Build();
         var client = new Mock<IDiscoveryClient>();
-        var configRepo = new Mock<IInternalConfigurationRepository>();
-        configRepo.Setup(x => x.Get())
-            .Returns(new OkResponse<IInternalConfiguration>(new InternalConfiguration() { ServiceProviderConfiguration = serviceProviderConfig }));
         var services = new ServiceCollection();
-        services.AddSingleton(configRepo.Object);
         services.AddSingleton(client.Object);
+        services.Configure<FileGlobalConfiguration>(o => o.ServiceDiscoveryProvider.Type = nameof(Eureka));
         var sp = services.BuildServiceProvider(true);
+        var app = new ApplicationBuilder(sp);
 
         // Act
-        var provider = EurekaMiddlewareConfiguration.Get(new ApplicationBuilder(sp));
+        var provider = EurekaMiddlewareConfiguration.Get.Invoke(app);
 
         // Assert
         Assert.Equal(TaskStatus.RanToCompletion, provider.Status);
