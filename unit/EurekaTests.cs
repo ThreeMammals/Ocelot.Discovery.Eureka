@@ -4,18 +4,46 @@ using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka.UnitTests;
 
-public class EurekaServiceDiscoveryProviderTests : Unit
+public class EurekaTests : Unit
 {
     private readonly Eureka _provider;
     private readonly Mock<IDiscoveryClient> _client;
     private readonly string _serviceId;
     private List<Service>? _result;
 
-    public EurekaServiceDiscoveryProviderTests()
+    public EurekaTests()
     {
         _serviceId = "Laura";
         _client = new Mock<IDiscoveryClient>();
         _provider = new Eureka(_serviceId, _client.Object);
+    }
+
+    [Fact]
+    public void Constructor_Throws_ArgumentNullException_When_ServiceName_Is_Null()
+    {
+        // Arrange
+        string? serviceName = null;
+
+        // Act, Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+            new Eureka(serviceName!, _client.Object));
+
+        // Assert
+        Assert.Equal(nameof(serviceName), exception.ParamName);
+    }
+
+    [Fact]
+    public void Constructor_Throws_ArgumentNullException_When_Client_Is_Null()
+    {
+        // Act
+        IDiscoveryClient? client = null;
+
+        // Act, Assert
+        var exception = Assert.Throws<ArgumentNullException>(() =>
+            new Eureka("MyService", client!));
+
+        // Assert
+        Assert.Equal(nameof(client), exception.ParamName);
     }
 
     [Fact]
