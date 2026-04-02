@@ -2,6 +2,11 @@
 [![Steeltoe Logo](/steeltoe_logo.svg)](https://steeltoe.io/ "Go to Steeltoe OSS portal")
 [![Eureka Logo](/eureka_logo.png)](https://github.com/Netflix/eureka/ "Go to Netflix Eureka repository")
 # Ocelot.Discovery.Eureka
+[![Release](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/release.yml/badge.svg)](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/release.yml)
+[![Publish](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/publish.yml/badge.svg)](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/publish.yml)
+[![codecov](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka/graph/badge.svg?token=2gMNojObGK)](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka)
+[![NuGet](https://img.shields.io/nuget/v/Ocelot.Discovery.Eureka?logo=nuget&label=NuGet&color=blue)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Download Ocelot.Discovery.Eureka from NuGet.org")
+[![Downloads](https://img.shields.io/nuget/dt/Ocelot.Discovery.Eureka?logo=nuget&label=Downloads)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Total Ocelot.Discovery.Eureka downloads from NuGet.org")
 
 [Ocelot](https://github.com/ThreeMammals/Ocelot) [Service Discovery](https://ocelot.readthedocs.io/en/latest/features/servicediscovery.html) feature, powered by [Steeltoe OSS](https://steeltoe.io/) [Service Discovery](https://steeltoe.io/docs/v4/discovery/index.html) integration for [Netflix Eureka](https://steeltoe.io/docs/v4/discovery/netflix-eureka.html) discovery client.
 
