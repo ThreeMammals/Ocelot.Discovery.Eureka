@@ -13,12 +13,7 @@ namespace Ocelot.Discovery.Eureka.Acceptance;
 
 public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
 {
-    private readonly List<IServiceInstance> _eurekaInstances;
-
-    public EurekaServiceDiscoveryTests()
-    {
-        _eurekaInstances = [];
-    }
+    private readonly List<IServiceInstance> _eurekaInstances = [];
 
     [BddfyTheory]
     [Trait("Feat", "262")] // https://github.com/ThreeMammals/Ocelot/issues/262
@@ -127,7 +122,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         };
         var json = JsonConvert.SerializeObject(applications);
         context.Response.Headers.Append("Content-Type", "application/json");
-        return context.Response.WriteAsync(json);
+        return context.Response.WriteAsync(json, context.RequestAborted);
     }
 
     private void GivenThereIsAFakeEurekaServiceDiscoveryProvider(int port)
@@ -142,7 +137,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         catch (Exception exception)
         {
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context.Response.WriteAsync(exception.StackTrace);
+            await context.Response.WriteAsync(exception.StackTrace, context.RequestAborted);
         }
     }
 }

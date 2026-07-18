@@ -18,7 +18,9 @@ public class EurekaTests : Unit
         _provider = new Eureka(_serviceId, _client.Object);
     }
 
-    [Fact]
+  public override CancellationToken CancelMe => TestContext.Current.CancellationToken;
+
+  [Fact]
     public void Constructor_Throws_ArgumentNullException_When_ServiceName_Is_Null()
     {
         // Arrange

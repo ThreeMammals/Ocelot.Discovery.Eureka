@@ -16,7 +16,7 @@ public sealed class OcelotBuilderExtensionsTests : Unit
     private readonly IConfiguration _configRoot;
     private IOcelotBuilder? _ocelotBuilder;
 
-    public OcelotBuilderExtensionsTests()
+  public OcelotBuilderExtensionsTests()
     {
         _configRoot = new ConfigurationRoot([]);
         _services = new ServiceCollection();
@@ -24,7 +24,9 @@ public sealed class OcelotBuilderExtensionsTests : Unit
         _services.AddSingleton(_configRoot);
     }
 
-    private static IWebHostEnvironment GetHostingEnvironment()
+  public override CancellationToken CancelMe => TestContext.Current.CancellationToken;
+
+  private static IWebHostEnvironment GetHostingEnvironment()
     {
         var environment = new Mock<IWebHostEnvironment>();
         environment.Setup(e => e.ApplicationName)
