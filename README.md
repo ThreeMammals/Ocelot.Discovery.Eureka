@@ -1,12 +1,14 @@
-[![Ocelot Logo](/ocelot_icon.png)](https://github.com/ThreeMammals/Ocelot/ "Go to Ocelot repository")
-[![Steeltoe Logo](/steeltoe_logo.svg)](https://steeltoe.io/ "Go to Steeltoe OSS portal")
-[![Eureka Logo](/eureka_logo.png)](https://github.com/Netflix/eureka/ "Go to Netflix Eureka repository")
+[![Ocelot Logo](/.config/ocelot_icon.png)](https://github.com/ThreeMammals/Ocelot/ "Go to Ocelot repository")
+[![Steeltoe Logo](/.config/steeltoe_logo.svg)](https://steeltoe.io/ "Go to Steeltoe OSS portal")
+[![Eureka Logo](/.config/eureka_logo.png)](https://github.com/Netflix/eureka/ "Go to Netflix Eureka repository")
+
 # Ocelot.Discovery.Eureka
 [![Release](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/release.yml/badge.svg)](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/release.yml)
 [![Publish](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/publish.yml/badge.svg)](https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/actions/workflows/publish.yml)
-[![codecov](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka/graph/badge.svg?token=2gMNojObGK)](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka)
-[![NuGet](https://img.shields.io/nuget/vpre/Ocelot.Discovery.Eureka?logo=nuget&label=NuGet)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Download Ocelot.Discovery.Eureka from NuGet.org")
-[![Downloads](https://img.shields.io/nuget/dt/Ocelot.Discovery.Eureka?logo=nuget&label=Downloads)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Total Ocelot.Discovery.Eureka downloads from NuGet.org")
+[![codecov1](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka/graph/badge.svg?token=2gMNojObGK&flag=unit)](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka?flags%5B0%5D=unit "Coverage by unit tests")
+[![codecov2](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka/graph/badge.svg?token=2gMNojObGK&flag=accept)](https://codecov.io/gh/ThreeMammals/Ocelot.Discovery.Eureka?flags%5B0%5D=accept "Coverage by acceptance tests")
+[![NuGet](https://img.shields.io/nuget/vpre/Ocelot.Discovery.Eureka?logo=nuget)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Download Ocelot.Discovery.Eureka from NuGet.org")
+[![Downloads](https://img.shields.io/nuget/dt/Ocelot.Discovery.Eureka?logo=nuget)](https://www.nuget.org/packages/Ocelot.Discovery.Eureka/ "Total Ocelot.Discovery.Eureka downloads from NuGet.org")
 
 [Ocelot](https://github.com/ThreeMammals/Ocelot) [Service Discovery](https://ocelot.readthedocs.io/en/latest/features/servicediscovery.html) feature, powered by [Steeltoe OSS](https://steeltoe.io/) [Service Discovery](https://steeltoe.io/docs/v4/discovery/index.html) integration for [Netflix Eureka](https://steeltoe.io/docs/v4/discovery/netflix-eureka.html) discovery client.
 
