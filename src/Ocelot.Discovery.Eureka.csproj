@@ -3,14 +3,13 @@
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <!--<CodeAnalysisRuleSet>..\..\codeanalysis.ruleset</CodeAnalysisRuleSet>-->
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>CS1591</NoWarn>
     <!--Package properties-->
-    <Version>25.0.0-beta.4</Version>
+    <Version>25.0.0-beta.5</Version>
     <PackageId>Ocelot.Discovery.Eureka</PackageId>
     <PackageDescription>Provides Ocelot extensions to use Netflix Eureka service discovery.</PackageDescription>
     <PackageReleaseNotes>https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/releases</PackageReleaseNotes>
@@ -32,7 +31,7 @@
     <None Include="..\README.md" Pack="true" PackagePath="\" Link="package\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ocelot" Version="25.0.0-beta.3" />
+    <PackageReference Include="Ocelot" Version="25.0.0-beta.4" />
     <PackageReference Include="Steeltoe.Discovery.Configuration" Version="4.2.0" />
     <PackageReference Include="Steeltoe.Discovery.Eureka" Version="4.2.0" />
   </ItemGroup>

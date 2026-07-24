@@ -18,5 +18,5 @@
 | Project repository | <sub>[![Project repository](https://img.shields.io/github/v/release/SteeltoeOSS/Steeltoe?logo=github&label=Steeltoe)](https://github.com/SteeltoeOSS/Steeltoe/ "Steeltoe .NET Open Source Software")</sub> |
 | Eureka repository | <sub>[![Eureka repository](https://img.shields.io/github/v/release/Netflix/eureka?logo=github&label=Eureka)](https://github.com/Netflix/eureka/ "Netflix Eureka repository")</sub> |
 | Core package | <sub>[![Core package](https://img.shields.io/nuget/vpre/Ocelot?logo=nuget&label=Ocelot)](https://www.nuget.org/packages/Ocelot/ "Ocelot package")</sub> |
-| Core repository | <sub>[![Core repository](https://img.shields.io/github/v/release/ThreeMammals/Ocelot?logo=github&label=Ocelot)](https://github.com/ThreeMammals/Ocelot/ "Ocelot repository")</sub> |
+| Core repository | <sub>[![Core repository](https://img.shields.io/github/v/release/ThreeMammals/Ocelot?logo=github&label=Ocelot&include_prereleases)](https://github.com/ThreeMammals/Ocelot/ "Ocelot repository")</sub> |
 | Extension packages | <sub>[![Extension packages](https://img.shields.io/badge/NuGet-ThreeMammals-blue?logo=nuget)](https://www.nuget.org/profiles/ThreeMammals "Ocelot extension packages owned by Three Mammals")</sub> |
