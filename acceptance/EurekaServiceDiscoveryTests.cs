@@ -3,11 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Ocelot.DependencyInjection;
 using Ocelot.LoadBalancer.Balancers;
-using Ocelot.Testing;
 using Steeltoe.Common.Discovery;
-using System.Net;
-using TestStack.BDDfy;
-using TestStack.BDDfy.Xunit;
 
 namespace Ocelot.Discovery.Eureka.Acceptance;
 
@@ -15,7 +11,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
 {
     private readonly List<IServiceInstance> _eurekaInstances = [];
 
-    [BddfyTheory]
+    [Theory]
     [Trait("Feat", "262")] // https://github.com/ThreeMammals/Ocelot/issues/262
     [Trait("PR", "324")] // https://github.com/ThreeMammals/Ocelot/pull/324
     [InlineData(true)]
@@ -37,15 +33,14 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
             Type = nameof(Eureka),
         };
         var body = Body();
-        this.Given(x => GivenThereIsAServiceRunningOn(port, body))
-            .And(x => GivenThereIsAFakeEurekaServiceDiscoveryProvider(EurekaPort))
-            .And(x => GivenTheServicesAreRegisteredWithEureka(instanceOne))
-            .And(x => GivenThereIsAConfiguration(configuration))
-            .And(x => GivenOcelotIsRunning(WithEureka))
-            .When(x => WhenIGetUrlOnTheApiGateway("/"))
-            .Then(x => ThenTheStatusCodeShouldBe(HttpStatusCode.OK))
-            .And(x => ThenTheResponseBodyShouldBe(body))
-            .BDDfy();
+        GivenThereIsAServiceRunningOn(port, body);
+        GivenThereIsAFakeEurekaServiceDiscoveryProvider(EurekaPort);
+        GivenTheServicesAreRegisteredWithEureka(instanceOne);
+        GivenThereIsAConfiguration(configuration);
+        GivenOcelotIsRunning(WithEureka);
+        await WhenIGetUrlOnTheApiGateway("/");
+        ThenTheStatusCodeShouldBe(HttpStatusCode.OK);
+        await ThenTheResponseBodyAsync();
     }
 
     private static void WithEureka(IServiceCollection services)
