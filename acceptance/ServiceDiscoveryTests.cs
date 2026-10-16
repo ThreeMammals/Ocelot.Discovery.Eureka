@@ -1,21 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Ocelot.DependencyInjection;
 using Ocelot.LoadBalancer.Balancers;
 using Steeltoe.Common.Discovery;
 
 namespace Ocelot.Discovery.Eureka.Acceptance;
 
-public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
+public sealed class ServiceDiscoveryTests : EurekaSteps
 {
     private readonly List<IServiceInstance> _eurekaInstances = [];
 
     [Theory]
-    [Trait("Feat", "262")] // https://github.com/ThreeMammals/Ocelot/issues/262
-    [Trait("PR", "324")] // https://github.com/ThreeMammals/Ocelot/pull/324
     [InlineData(true)]
     [InlineData(false)]
+    [Trait("Feat", "262")] // https://github.com/ThreeMammals/Ocelot/issues/262
+    [Trait("PR", "324")] // https://github.com/ThreeMammals/Ocelot/pull/324
+    [Trait("Release", "5.5.4")] // https://github.com/ThreeMammals/Ocelot/releases/tag/5.5.4
     public async Task Should_use_eureka_service_discovery_and_make_request(bool dotnetRunningInContainer)
     {
         Environment.SetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER", dotnetRunningInContainer.ToString());
@@ -28,12 +27,7 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         route.ServiceName = ProductService;
         route.LoadBalancerOptions = new(nameof(LeastConnection));
         var configuration = GivenConfiguration(route);
-        configuration.GlobalConfiguration.ServiceDiscoveryProvider = new()
-        {
-            Type = nameof(Eureka),
-        };
-        var body = Body();
-        GivenThereIsAServiceRunningOn(port, body);
+        GivenThereIsAServiceRunningOn(port);
         GivenThereIsAFakeEurekaServiceDiscoveryProvider(EurekaPort);
         GivenTheServicesAreRegisteredWithEureka(instanceOne);
         GivenThereIsAConfiguration(configuration);
@@ -43,16 +37,8 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         await ThenTheResponseBodyAsync();
     }
 
-    private static void WithEureka(IServiceCollection services)
-        => services.AddOcelot().AddEureka();
-
     private void GivenTheServicesAreRegisteredWithEureka(params IServiceInstance[] serviceInstances)
-    {
-        foreach (var instance in serviceInstances)
-        {
-            _eurekaInstances.Add(instance);
-        }
-    }
+        => _eurekaInstances.AddRange(serviceInstances);
 
     private Task MapEurekaService(HttpContext context)
     {
@@ -120,19 +106,6 @@ public sealed class EurekaServiceDiscoveryTests : AcceptanceSteps
         return context.Response.WriteAsync(json, context.RequestAborted);
     }
 
-    private void GivenThereIsAFakeEurekaServiceDiscoveryProvider(int port)
-        => handler.GivenThereIsAServiceRunningOn(port, MapEurekaService);
-
-    protected override async Task MapStatus(HttpContext context)
-    {
-        try
-        {
-            await base.MapStatus(context);
-        }
-        catch (Exception exception)
-        {
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context.Response.WriteAsync(exception.StackTrace, context.RequestAborted);
-        }
-    }
+    private void GivenThereIsAFakeEurekaServiceDiscoveryProvider(int eurekaPort)
+        => handler.GivenThereIsAServiceRunningOn(eurekaPort, MapEurekaService);
 }
