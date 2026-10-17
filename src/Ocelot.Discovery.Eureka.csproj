@@ -9,7 +9,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>CS1591</NoWarn>
     <!--Package properties-->
-    <Version>25.0.1-beta.1</Version>
+    <Version>25.0.2-beta.1</Version>
     <PackageId>Ocelot.Discovery.Eureka</PackageId>
     <PackageDescription>Provides Ocelot extensions to use Netflix Eureka service discovery.</PackageDescription>
     <PackageReleaseNotes>https://github.com/ThreeMammals/Ocelot.Discovery.Eureka/releases</PackageReleaseNotes>
@@ -31,12 +31,11 @@
     <None Include="..\README.md" Pack="true" PackagePath="\" Link="package\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Ocelot" Version="25.0.1" />
+    <PackageReference Include="Ocelot" Version="25.0.2" />
     <PackageReference Include="Steeltoe.Discovery.Configuration" Version="4.3.0" />
     <PackageReference Include="Steeltoe.Discovery.Eureka" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <!--<ProjectReference Include="..\Ocelot\Ocelot.csproj" />-->
     <InternalsVisibleTo Include="Ocelot.Discovery.Eureka.UnitTests" />
   </ItemGroup>
 </Project>
